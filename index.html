@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>企税康 —— 财税合规专家</title>
+  <meta name="description" content="企税康 · 专业财税合规服务品牌。深耕财税 13 年，百人专业团队，累计服务 9000+ 企业客户。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+            plex: ['"IBM Plex Sans"', '"Noto Sans SC"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0c2461',
+            },
+          },
+          animation: {
+            'marquee': 'marquee 45s linear infinite',
+            'marquee-reverse': 'marquee-reverse 45s linear infinite',
+            'float': 'float 7s ease-in-out infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            'marquee-reverse': {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-14px)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    [x-cloak] { display: none !important; }
+
+    body {
+      background-color: #ffffff;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-num { font-family: '"IBM Plex Sans"', sans-serif; font-feature-settings: 'tnum'; }
+
+    /* Photographic sections degrade to a gradient if the image fails to load */
+    .bg-hero {
+      background-color: #0c2461;
+      background-image:
+        linear-gradient(180deg, rgba(12,36,97,0.78) 0%, rgba(30,58,138,0.55) 45%, rgba(12,36,97,0.85) 100%),
+        url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    .bg-mountain {
+      background-color: #1e3a8a;
+      background-image:
+        linear-gradient(120deg, rgba(30,58,138,0.92) 0%, rgba(37,99,235,0.55) 50%, rgba(12,36,97,0.65) 100%),
+        url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      transition: all .25s ease;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 12px 28px rgba(37, 99, 235, .35);
+      transform: translateY(-2px);
+    }
+
+    .card-shadow { box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 32px rgba(15,23,42,.06); }
+    .card-shadow-hover { transition: box-shadow .25s ease, transform .25s ease; }
+    .card-shadow-hover:hover { box-shadow: 0 18px 48px rgba(37,99,235,.16); transform: translateY(-4px); }
+
+    .section-eyebrow { letter-spacing: .35em; }
+
+    /* 走马灯 marquee: edge fade + hover pause */
+    .marquee-wrap::before,
+    .marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 8%;
+      max-width: 120px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .marquee-wrap::before { left: 0; background: linear-gradient(90deg, #ffffff, transparent); }
+    .marquee-wrap::after { right: 0; background: linear-gradient(270deg, #ffffff, transparent); }
+    .marquee-row:hover { animation-play-state: paused; }
+
+    /* 产品金字塔 tiers */
+    .pyramid-tier {
+      clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+      transition: filter .3s ease, transform .3s ease;
+    }
+    .pyramid-tier:hover,
+    .pyramid-tier.active {
+      filter: brightness(1.1) saturate(1.1);
+      transform: scale(1.03);
+      z-index: 10;
+    }
+
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body class="font-sans" x-data="app()" x-cloak>
+
+  <!-- ========================= HEADER ========================= -->
+  <header class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+          :class="scrolled ? 'bg-white/95 backdrop-blur-md shadow-md shadow-slate-900/5' : 'bg-transparent'">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center shrink-0 group" aria-label="企税康 — 财税合规专家">
+          <img src="assets/logo.png" alt="企税康 — 财税合规专家"
+               class="h-9 lg:h-11 w-auto object-contain transition-all duration-300"
+               :class="scrolled ? '' : 'brightness-0 invert'" />
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-1">
+          <template x-for="item in navItems" :key="item.href">
+            <a :href="item.href"
+               class="px-4 py-2 text-sm font-medium rounded-md transition-colors"
+               :class="scrolled ? 'text-slate-700 hover:text-brand-700 hover:bg-brand-50' : 'text-white/90 hover:text-white hover:bg-white/10'"
+               x-text="item.label"></a>
+          </template>
+        </nav>
+
+        <!-- Right: phone + CTA -->
+        <div class="hidden md:flex items-center gap-4 shrink-0">
+          <a href="tel:400-888-6688" class="flex items-center gap-2 group">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full transition-colors"
+                  :class="scrolled ? 'bg-brand-50 text-brand-600' : 'bg-white/15 text-white'">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 0 1 2-2h2.3a1 1 0 0 1 .95.68l1 3a1 1 0 0 1-.27 1.05l-1.4 1.27a13 13 0 0 0 5.4 5.4l1.27-1.4a1 1 0 0 1 1.05-.27l3 1a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"/></svg>
+            </span>
+            <span class="font-num font-bold text-base leading-none transition-colors"
+                  :class="scrolled ? 'text-brand-800' : 'text-white'">400-888-6688</span>
+          </a>
+          <a href="#contact" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">免费财税测算</a>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button @click="mobileOpen = !mobileOpen" class="lg:hidden p-2" aria-label="菜单">
+          <svg class="w-6 h-6" :class="scrolled ? 'text-slate-800' : 'text-white'" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path x-show="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            <path x-show="mobileOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div x-show="mobileOpen" x-cloak x-transition
+         class="lg:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-1 shadow-xl">
+      <template x-for="item in navItems" :key="item.href">
+        <a :href="item.href" @click="mobileOpen = false"
+           class="block px-4 py-3 text-slate-700 hover:text-brand-700 hover:bg-brand-50 rounded-lg text-sm font-medium"
+           x-text="item.label"></a>
+      </template>
+      <div class="flex items-center justify-between gap-3 pt-3 px-4">
+        <a href="tel:400-888-6688" class="font-num font-bold text-brand-800">400-888-6688</a>
+        <a href="#contact" @click="mobileOpen = false" class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-full">免费测算</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================= HERO ========================= -->
+  <section id="hero" class="bg-hero relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-28 -left-10 w-80 h-80 rounded-full bg-brand-400/20 blur-3xl"></div>
+      <div class="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-brand-300/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-32 text-center">
+      <p class="text-brand-100/90 text-sm sm:text-base tracking-[0.3em] mb-5 font-light">互联网 + 时代下，专业财税合规服务品牌</p>
+      <h1 class="text-white font-black leading-[1.12] text-4xl sm:text-6xl lg:text-7xl mb-7">
+        合规为基<span class="text-brand-300"> · </span>共驱企业成长
+      </h1>
+      <p class="text-brand-50/85 max-w-2xl mx-auto text-base sm:text-lg font-light leading-relaxed mb-10">
+        守护企业财税健康，助力企业行稳致远。13 年深耕，百人专业团队，为 9000+ 企业提供全生命周期财税合规解决方案。
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#contact" class="btn-primary text-white font-semibold px-8 py-4 rounded-full text-base inline-flex items-center gap-2">
+          免费财税合规测算
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </a>
+        <a href="#business" class="font-semibold px-8 py-4 rounded-full text-base border border-white/40 text-white hover:bg-white/10 transition-colors inline-flex items-center gap-2">
+          了解服务体系
+        </a>
+      </div>
+    </div>
+
+    <!-- scroll hint -->
+    <a href="#business" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors hidden sm:block" aria-label="向下滚动">
+      <svg class="w-6 h-6 animate-float" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m19 14-7 7-7-7M19 7l-7 7-7-7"/></svg>
+    </a>
+  </section>
+
+  <!-- ========================= CORE BUSINESS ========================= -->
+  <section id="business" class="relative bg-white py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- ===== Part 1: Product Pyramid ===== -->
+      <div class="text-center mb-14">
+        <span class="section-eyebrow text-brand-600 text-xs font-semibold uppercase font-plex">Product System</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-brand-950">企业全生命周期 · 产品金字塔</h2>
+        <p class="mt-3 text-slate-500 max-w-2xl mx-auto">根据企业不同发展阶段，精准匹配财税合规解决方案。鼠标悬停查看各层级详情。</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center mb-24">
+        <!-- Pyramid -->
+        <div class="flex flex-col items-center gap-2">
+          <template x-for="(tier, i) in lifecycleTiers" :key="i">
+            <button type="button"
+              @mouseenter="activeTier = i" @focus="activeTier = i" @click="activeTier = i"
+              class="pyramid-tier text-white py-5 px-6 flex items-center justify-center cursor-pointer shadow-lg"
+              :class="activeTier === i ? 'active' : ''"
+              :style="`width:${58 + i * 14}%; background:linear-gradient(135deg, ${tier.from}, ${tier.to})`">
+              <span class="font-bold text-sm sm:text-base text-center drop-shadow" x-text="tier.short"></span>
+            </button>
+          </template>
+          <p class="mt-4 text-xs text-slate-400">塔尖至塔基：成熟期 → 发展期 → 成长期 → 初创期</p>
+        </div>
+
+        <!-- Dynamic detail panel -->
+        <div class="rounded-3xl border border-slate-100 bg-slate-50/70 p-8 lg:p-10 card-shadow min-h-[360px]">
+          <div class="flex items-center gap-4 mb-7">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-xl font-bold shrink-0"
+                 :style="`background:linear-gradient(135deg, ${lifecycleTiers[activeTier].from}, ${lifecycleTiers[activeTier].to})`"
+                 x-text="activeTier + 1"></div>
+            <div>
+              <h3 class="text-2xl font-black text-brand-950" x-text="lifecycleTiers[activeTier].stage"></h3>
+              <p class="text-sm text-slate-500" x-text="lifecycleTiers[activeTier].scale"></p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h4 class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2 font-plex">匹配痛点 / 规模</h4>
+              <p class="text-slate-700 leading-relaxed" x-text="lifecycleTiers[activeTier].pain"></p>
+            </div>
+            <div>
+              <h4 class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2 font-plex">核心推荐服务体系</h4>
+              <p class="text-brand-700 font-bold text-lg leading-snug" x-text="lifecycleTiers[activeTier].service"></p>
+            </div>
+            <div class="flex items-center gap-3 pt-1">
+              <span class="text-xs font-semibold text-slate-500 shrink-0">服务费用预算</span>
+              <div class="flex-1 h-px bg-gradient-to-r from-brand-200 to-transparent"></div>
+              <span class="text-sm font-bold text-brand-700 bg-brand-50 border border-brand-100 px-4 py-2 rounded-full" x-text="lifecycleTiers[activeTier].budget"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Part 2: Four Flagship Services (Tabs) ===== -->
+      <div class="text-center mb-12">
+        <span class="section-eyebrow text-brand-600 text-xs font-semibold uppercase font-plex">Core Services</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-brand-950">四大旗舰服务板块</h2>
+        <p class="mt-3 text-slate-500 max-w-2xl mx-auto">精细化服务体系，覆盖企业财税合规全场景。点击标签查看服务详情清单。</p>
+      </div>
+
+      <!-- Tab headers -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+        <template x-for="(tab, i) in serviceTabs" :key="i">
+          <button type="button" @click="activeTab = i"
+                  class="px-4 sm:px-6 py-3 rounded-full text-sm font-semibold transition-colors cursor-pointer"
+                  :class="activeTab === i ? 'bg-brand-600 text-white shadow-md shadow-brand-600/25' : 'bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-700'"
+                  x-text="tab.title"></button>
+        </template>
+      </div>
+
+      <!-- Tab content -->
+      <div class="max-w-5xl mx-auto">
+        <template x-for="(tab, i) in serviceTabs" :key="i">
+          <div x-show="activeTab === i" x-transition:enter="transition ease-out duration-300"
+               x-transition:enter-start="opacity-0 translate-y-3" x-transition:enter-end="opacity-100 translate-y-0">
+            <div class="rounded-3xl border border-slate-100 overflow-hidden card-shadow">
+              <div class="bg-gradient-to-r from-brand-700 to-brand-900 px-8 py-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-white" x-text="tab.title"></h3>
+                <p class="text-brand-100 text-sm mt-1" x-text="tab.subtitle"></p>
+              </div>
+              <div class="p-8 bg-white">
+                <!-- grouped item lists -->
+                <template x-for="(group, gi) in tab.groups" :key="gi">
+                  <div class="mb-8 last:mb-0">
+                    <h4 class="flex items-center gap-2 text-brand-700 font-bold mb-4" x-show="group.name">
+                      <span class="w-1.5 h-5 bg-brand-600 rounded-full"></span>
+                      <span x-text="group.name"></span>
+                    </h4>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                      <template x-for="(item, ii) in group.items" :key="ii">
+                        <div class="flex items-start gap-3 rounded-xl bg-slate-50/80 border border-slate-100 p-4 hover:bg-brand-50 transition-colors">
+                          <span class="w-7 h-7 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center shrink-0">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>
+                          </span>
+                          <span class="text-slate-700 text-sm leading-relaxed" x-text="item"></span>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </template>
+
+                <!-- 8-step flow -->
+                <div x-show="tab.steps" class="mt-2">
+                  <h4 class="flex items-center gap-2 text-brand-700 font-bold mb-6">
+                    <span class="w-1.5 h-5 bg-brand-600 rounded-full"></span>
+                    标准 8 步精细化服务流程
+                  </h4>
+                  <div class="relative">
+                    <div class="hidden sm:block absolute top-6 left-6 right-6 h-0.5 bg-brand-100"></div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-8">
+                      <template x-for="(step, si) in (tab.steps || [])" :key="si">
+                        <div class="relative text-center">
+                          <div class="w-12 h-12 mx-auto rounded-full bg-gradient-to-br from-brand-600 to-brand-800 text-white font-bold flex items-center justify-center text-sm shadow-lg shadow-brand-600/25 relative z-10 mb-3" x-text="si + 1"></div>
+                          <p class="text-xs sm:text-sm text-slate-600 font-medium leading-snug" x-text="step"></p>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= MEMORABILIA / MILESTONES ========================= -->
+  <section id="milestones" class="bg-mountain relative py-20 lg:py-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="mb-14">
+        <span class="section-eyebrow text-brand-200 text-xs font-semibold uppercase font-plex">Memorabilia</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-white">大事记 · 成长足迹</h2>
+        <p class="mt-3 text-brand-100/80 max-w-xl">从一支小团队到苏南财税合规标杆，每一步都见证专业沉淀。</p>
+      </div>
+
+      <div class="relative">
+        <!-- horizontal line -->
+        <div class="hidden md:block absolute left-0 right-0 top-7 h-px bg-white/25"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+          <template x-for="(m, i) in milestones" :key="i">
+            <div class="relative">
+              <div class="hidden md:block absolute -top-1 left-0 w-3.5 h-3.5 rounded-full bg-white ring-4 ring-brand-400/40"></div>
+              <div class="font-num text-5xl lg:text-6xl font-bold text-white/95 mb-3 md:mt-12" x-text="m.year"></div>
+              <h3 class="text-white font-bold text-lg mb-2" x-text="m.title"></h3>
+              <p class="text-brand-100/80 text-sm leading-relaxed" x-text="m.desc"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TESTIMONIALS (MARQUEE) ========================= -->
+  <section id="testimonials" class="bg-white py-20 lg:py-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="section-eyebrow text-brand-600 text-xs font-semibold uppercase font-plex">Client Testimonials</span>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-brand-950">客户证言</h2>
+        <p class="mt-3 text-slate-500 max-w-xl mx-auto">涵盖各行各业的合规心声，见证企税康的专业力量</p>
+      </div>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="marquee-wrap relative">
+      <div class="marquee-row flex gap-6 w-max animate-marquee">
+        <template x-for="n in 2" :key="'a'+n">
+          <div class="flex gap-6 shrink-0">
+            <template x-for="(t, i) in testimonials.slice(0, 5)" :key="'a'+n+'-'+i">
+              <article class="w-[340px] sm:w-[380px] shrink-0 bg-slate-50/70 border border-slate-100 rounded-2xl p-6 card-shadow-hover">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold" x-text="t.name.charAt(0)"></div>
+                    <div>
+                      <div class="font-bold text-brand-950 text-sm" x-text="t.name"></div>
+                      <div class="text-xs text-slate-400" x-text="t.company"></div>
+                    </div>
+                  </div>
+                  <svg class="w-6 h-6 text-brand-300" fill="currentColor" viewBox="0 0 24 24"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3Zm0 0 4-7a2 2 0 0 1 2 2v3h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 18.8 20H7"/></svg>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed" x-text="'「' + t.quote + '」'"></p>
+              </article>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- Row 2 (reverse) -->
+    <div class="marquee-wrap relative mt-6">
+      <div class="marquee-row flex gap-6 w-max animate-marquee-reverse">
+        <template x-for="n in 2" :key="'b'+n">
+          <div class="flex gap-6 shrink-0">
+            <template x-for="(t, i) in testimonials.slice(5)" :key="'b'+n+'-'+i">
+              <article class="w-[340px] sm:w-[380px] shrink-0 bg-white border border-brand-100 rounded-2xl p-6 card-shadow">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-brand-600 to-brand-900 flex items-center justify-center text-white font-bold" x-text="t.name.charAt(0)"></div>
+                    <div>
+                      <div class="font-bold text-brand-950 text-sm" x-text="t.name"></div>
+                      <div class="text-xs text-slate-400" x-text="t.company"></div>
+                    </div>
+                  </div>
+                  <svg class="w-6 h-6 text-brand-400" fill="currentColor" viewBox="0 0 24 24"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3Zm0 0 4-7a2 2 0 0 1 2 2v3h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 18.8 20H7"/></svg>
+                </div>
+                <p class="text-sm text-slate-600 leading-relaxed" x-text="'「' + t.quote + '」'"></p>
+              </article>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- stats strip -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <template x-for="(s, i) in stats" :key="i">
+          <div class="text-center p-6 rounded-2xl bg-slate-50/70 border border-slate-100">
+            <div class="font-num text-4xl font-bold text-brand-700 tabular-nums">
+              <span x-text="Math.floor(s.current)"></span><span class="text-brand-400" x-text="s.suffix"></span>
+            </div>
+            <div class="text-slate-600 text-sm font-medium mt-2" x-text="s.label"></div>
+            <div class="text-slate-400 text-xs mt-0.5 font-plex" x-text="s.unit"></div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT / LEAD FORM ========================= -->
+  <section id="contact" class="bg-brand-950 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-20 right-0 w-96 h-96 rounded-full bg-brand-600/20 blur-3xl"></div>
+      <div class="absolute bottom-0 left-10 w-80 h-80 rounded-full bg-brand-500/10 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- form -->
+        <div class="bg-white rounded-3xl p-8 lg:p-10 shadow-2xl">
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-950 mb-2">立即免费预约</h2>
+          <p class="text-slate-500 mb-8 text-sm leading-relaxed">
+            提供公司名 + 电话，<span class="text-brand-700 font-semibold">10 分钟内</span>资深会计回电，专属企业财税合规检测。
+          </p>
+          <form @submit.prevent="submitForm" class="space-y-5">
+            <div>
+              <label for="company" class="block text-slate-700 text-sm font-medium mb-2">公司名称</label>
+              <input id="company" type="text" x-model="form.company" required
+                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+                     placeholder="请输入您的公司名称" />
+            </div>
+            <div>
+              <label for="phone" class="block text-slate-700 text-sm font-medium mb-2">联系电话</label>
+              <input id="phone" type="tel" x-model="form.phone" required
+                     class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+                     placeholder="请输入您的手机号码" />
+            </div>
+            <button type="submit" class="btn-primary w-full text-white font-bold py-4 rounded-xl text-base">
+              立即预约 · 免费财税合规检测
+            </button>
+            <p x-show="formSubmitted" x-cloak class="text-emerald-600 text-sm text-center">
+              预约成功！我们的合规专家将在 10 分钟内与您联系。
+            </p>
+          </form>
+        </div>
+
+        <!-- contact info -->
+        <div class="text-white pt-2">
+          <h3 class="text-xl font-bold mb-8">联系我们</h3>
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 0 1 2-2h2.3a1 1 0 0 1 .95.68l1 3a1 1 0 0 1-.27 1.05l-1.4 1.27a13 13 0 0 0 5.4 5.4l1.27-1.4a1 1 0 0 1 1.05-.27l3 1a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5Z"/></svg>
+              </div>
+              <div>
+                <div class="text-brand-200 text-sm">24 小时合规热线</div>
+                <div class="font-num font-bold text-2xl">400-888-6688</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-brand-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.66 16.66 13.41 20.9a2 2 0 0 1-2.82 0l-4.25-4.24a8 8 0 1 1 11.32 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+              </div>
+              <div>
+                <div class="text-brand-200 text-sm">总部地址</div>
+                <div class="text-white font-medium leading-relaxed">江苏省苏州市工业园区星都街 72 号宏海大厦 1 幢 2003 室</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QR -->
+          <div class="mt-10 inline-flex items-center gap-5 bg-white/5 border border-white/10 rounded-2xl p-5">
+            <div class="w-28 h-28 bg-white rounded-xl flex items-center justify-center">
+              <svg class="w-20 h-20 text-brand-950" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm13-2h3v3h-3v-3Zm-4 0h3v3h-3v-3Zm4 4h3v3h-3v-3Zm-4 0h3v3h-3v-3Z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">扫码添加官方客服</div>
+              <div class="text-brand-200 text-sm">财税政策解读 · 在线答疑</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="bg-[#081a3f] text-slate-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div class="lg:col-span-1">
+          <div class="mb-4">
+            <img src="assets/logo.png" alt="企税康" class="h-9 w-auto object-contain brightness-0 invert" />
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed">专业财税合规服务品牌，守护企业财税健康，助力企业行稳致远。</p>
+        </div>
+
+        <template x-for="(col, i) in footerCols" :key="i">
+          <div>
+            <h4 class="text-white font-semibold mb-4 text-sm" x-text="col.title"></h4>
+            <ul class="space-y-2.5">
+              <template x-for="(link, j) in col.links" :key="j">
+                <li>
+                  <a :href="link.href"
+                     :target="link.href.startsWith('http') ? '_blank' : '_self'"
+                     :rel="link.href.startsWith('http') ? 'noopener noreferrer' : null"
+                     class="text-sm text-slate-400 hover:text-brand-300 transition-colors" x-text="link.label"></a>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-center">
+        <p class="text-slate-500 text-sm">Copyright &copy; 2026 企税康 版权所有 · 苏ICP备2026042506号</p>
+        <p class="text-slate-500 text-sm">合规为基 · 共驱企业成长</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function app() {
+      return {
+        scrolled: false,
+        mobileOpen: false,
+        activeTier: 0,
+        activeTab: 0,
+        formSubmitted: false,
+        form: { company: '', phone: '' },
+
+        navItems: [
+          { label: '首页', href: '#hero' },
+          { label: '核心业务', href: '#business' },
+          { label: '大事记', href: '#milestones' },
+          { label: '客户证言', href: '#testimonials' },
+          { label: '联系我们', href: '#contact' },
+        ],
+
+        lifecycleTiers: [
+          {
+            short: '集团化税务外包', stage: '成熟期', scale: '集团化连锁公司',
+            pain: '多主体、跨区域经营，税务架构复杂，需要集团化税务统筹与高度定制化的合规方案。',
+            service: '集团化税务外包（一事一议定制方案）', budget: '一事一议',
+            from: '#1e3a8a', to: '#0c2461',
+          },
+          {
+            short: '常年财税顾问', stage: '发展期', scale: '有专职会计，年营收 2000w 以上',
+            pain: '已有财务团队但缺乏高级财税专家指导，面临复杂税务场景与政策红利争取需求。',
+            service: '常年财税顾问（注册会计师 / 税务师把关）', budget: '5w - 30w 元 / 年',
+            from: '#1d4ed8', to: '#1e40af',
+          },
+          {
+            short: '合规代账', stage: '成长期', scale: '年营收 300w 以上',
+            pain: '业务快速扩张，税务风险逐渐显现，需要更专业的合规记账与税务筹划，规避财税隐患。',
+            service: '合规代账（5 年以上经验中级会计主理）', budget: '1w - 5w 元 / 年',
+            from: '#3b82f6', to: '#2563eb',
+          },
+          {
+            short: '常规代账 + 代办服务', stage: '初创期', scale: '团队 3-5 人',
+            pain: '团队精简，缺乏专职财务人员，工商注册与基础记账需求迫切，需控制成本同时确保合规。',
+            service: '常规代账 + 工商代办服务', budget: '1w 元以内 / 年',
+            from: '#60a5fa', to: '#3b82f6',
+          },
+        ],
+
+        serviceTabs: [
+          {
+            title: '高效代办服务',
+            subtitle: '工商注册 · 政策申报 · 知识产权一站式办理',
+            groups: [
+              { name: '工商类', items: ['公司注册', '工商变更', '银行开户', '公司注销', '注册地址匹配'] },
+              { name: '政策申报类', items: ['科技型中小企业', '省科技民营企业', '高新技术企业', '专精特新企业认定', '商标 / 版权 / 专利申报'] },
+            ],
+          },
+          {
+            title: '常规代理记账',
+            subtitle: '一站式财税托管，让企业专注核心经营',
+            groups: [
+              { name: '一站式托管', items: ['全包做账报税（月 / 季 / 度全流程化推进）', '发票托管', '社保公积金托管', '日常多维财税咨询'] },
+            ],
+          },
+          {
+            title: '合规代账 · VIP会计',
+            subtitle: '5 年以上经验中级会计主理，标准 8 步精细化服务',
+            groups: [],
+            steps: ['首次账税规划', '建账交接', '首次服务沟通', '事务代办', '精细做账', '每月主动沟通', '动态税务管理', '兜底服务'],
+          },
+          {
+            title: '常年财税顾问',
+            subtitle: '高端财税专家入企，顶层设计与持续赋能',
+            groups: [
+              { name: '高端财税', items: ['入企全面调研', '出具税务顶层设计与优化建议书', '节点交付汇报', 'CPA 日常专家咨询服务'] },
+            ],
+          },
+        ],
+
+        milestones: [
+          { year: '2013', title: '专注起步', desc: '苏州乐安会计代理有限公司（企税康前身）成立。' },
+          { year: '2017', title: '体系升级', desc: '组建代理记账、工商注册、财税咨询、知识产权等一站式企业服务平台。' },
+          { year: '2022', title: '行业领先', desc: '启用「企税康」品牌，明确战略定位核心。' },
+          { year: '2026', title: '区域标杆', desc: '深耕行业 13 年，累计服务 9000+ 企业，成为区域连锁服务品牌。' },
+        ],
+
+        testimonials: [
+          { name: '陈总', company: '苏州国际贸易公司', quote: '自从企税康接管我们的财务，我这财税知识都跟着涨了不少，6 年来开发票零失误！以前自己开总搞错规格型号，光冲红账要跑断腿。现在有王老师团队在，从采购发票审核到销售凭据规范，都帮我们立了规矩，税务检查再也不慌了。选择企税康，太省心了！' },
+          { name: '李总', company: '苏州设备制造公司', quote: '认识企税康的王老师是从一场科技企业财税讲座，这一合作就是七年。他们对研发费用加计扣除、高新技术企业认定的流程无比熟悉，帮我们拿到的税收优惠可不是小数目。每次申报期，王老师都会盯着数据，确保万无一失。有这样的团队护航，我们搞研发更有底气了！' },
+          { name: '王总', company: '苏州管理咨询公司', quote: '从初创时的基础代账到现在的专项顾问服务，和企税康合作五年，钱老师团队总能带来惊喜。他们不仅把咨询行业的特殊财税问题处理得妥妥帖帖，还经常分享最新政策解读。感谢企税康，感谢钱老师！' },
+          { name: '谢总', company: '苏州科技公司', quote: '和企税康合作三年，程老师团队是我们的财税管家。从企业初创一直陪伴我们至今。互联网行业变化快，他们总能提前把直播带货的税务风险都想到了。有次深夜遇到突发问题，老师秒回消息，视频指导我们处理，真让人感动。感谢他们的守护，期待继续同行！' },
+          { name: '吴总', company: '苏州供应链管理公司', quote: '企税康的陈老师团队已经守护我们 9 年了，从区域配送做到全国布局，他们功不可没。供应链的资金流复杂，陈老师总能把账算得清清楚楚，还帮我们优化了物流发票的管理流程，每次走访都能给出针对性建议，专业又踏实。' },
+          { name: '陆总', company: '苏州跨境电商公司', quote: '从基础会计部到税务部，和企税康合作 6 年，在杨老师带领下，我们的财税管理越来越规范。他们不仅帮我们做了成本优化，还利用政策帮我们申请了环保项目的税收减免。有次遇到海关的涉税问题，也是他们协调解决的。选择企税康，准没错！' },
+          { name: '孟总', company: '苏州物流公司', quote: '十年了，企税康的肖老师团队看着我们从几辆卡车发展到现在的规模化车队。运输行业的油卡抵扣、过路费发票管理很繁琐，他们开发的台账系统帮了大忙。以前总被税务查税盘，现在再也没出过岔子。这份安心，多少钱都买不来！' },
+          { name: '任总', company: '苏州电子商务公司', quote: '和企税康合作三年，周老师团队的服务特别贴心。体育培训的预收款税务处理、学员退费的发票问题，他们都帮我们制定了详细流程。每次有新政策，周老师都会特意过来拜访我们，讲解细致。感谢他们让我们的运营越来越规范！' },
+          { name: '蔡总', company: '苏州医疗科技公司', quote: '企税康为我们医疗科技企业建立了规范的财税体系。他们对医疗科技行业的政策吃得很透，从研发立项到医疗器械注册、专项审计，他们准备的资料专业又齐全。每次政策一落地，都是他们第一时间提醒我们，让我们搞创新更踏实！' },
+        ],
+
+        stats: [
+          { target: 13, current: 0, suffix: '+', label: '行业深耕', unit: 'Years' },
+          { target: 100, current: 0, suffix: '+', label: '专业团队', unit: 'Person' },
+          { target: 9000, current: 0, suffix: '+', label: '服务客户', unit: 'Cases' },
+          { target: 98, current: 0, suffix: '%', label: '客户续约率', unit: 'Renewal' },
+        ],
+
+        footerCols: [
+          { title: '核心业务', links: [
+            { label: '高效代办服务', href: '#business' },
+            { label: '常规代理记账', href: '#business' },
+            { label: '合规代账 · VIP', href: '#business' },
+            { label: '常年财税顾问', href: '#business' },
+          ] },
+          { title: '核心网点分布', links: [
+            { label: '苏州工业园区总部', href: 'https://www.amap.com/search?query=' + encodeURIComponent('苏州工业园区星都街72号宏海大厦2005') },
+            { label: '苏州常熟服务中心', href: 'https://www.amap.com/search?query=' + encodeURIComponent('苏州常熟碧溪新区碧溪中路338号3幢409-4') },
+            { label: '无锡服务中心', href: 'https://www.amap.com/search?query=' + encodeURIComponent('无锡梁溪区黄巷街道锡澄路256号2112室') },
+            { label: '上海服务中心', href: 'https://www.amap.com/search?query=' + encodeURIComponent('上海宝山区淞南路479号2层') },
+          ] },
+          { title: '友情链接', links: [
+            { label: '国家税务总局', href: 'https://www.chinatax.gov.cn/' },
+            { label: '国家企业信用信息公示系统', href: 'https://www.gsxt.gov.cn/' },
+            { label: '江苏政务服务网', href: 'https://www.jszwfw.gov.cn/' },
+          ] },
+        ],
+
+        init() {
+          window.addEventListener('scroll', () => { this.scrolled = window.scrollY > 40; });
+          this.animateCounters();
+        },
+
+        animateCounters() {
+          const duration = 1800;
+          const targets = [...this.stats];
+          const run = () => {
+            const start = performance.now();
+            const step = (now) => {
+              const p = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              targets.forEach(t => { t.current = t.target * eased; });
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          };
+          const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) { run(); observer.disconnect(); }
+          }, { threshold: 0.25 });
+          this.$nextTick(() => {
+            const el = document.getElementById('testimonials');
+            if (el) observer.observe(el); else run();
+          });
+        },
+
+        submitForm() {
+          this.formSubmitted = true;
+          setTimeout(() => { this.formSubmitted = false; }, 5000);
+          this.form = { company: '', phone: '' };
+        },
+      };
+    }
+  </script>
+</body>
+</html>
