@@ -10,7 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
   <script>
     tailwind.config = {
       theme: {
@@ -149,8 +150,7 @@
         <!-- Logo -->
         <a href="#hero" class="flex items-center shrink-0 group" aria-label="企税康 — 财税合规专家">
           <img src="assets/logo.png" alt="企税康 — 财税合规专家"
-               class="h-9 lg:h-11 w-auto object-contain transition-all duration-300"
-               :class="scrolled ? '' : 'brightness-0 invert'" />
+               class="h-10 lg:h-12 w-auto max-w-[180px] sm:max-w-[220px] lg:max-w-[260px] object-contain object-left transition-opacity duration-300 group-hover:opacity-90" />
         </a>
 
         <!-- Desktop Nav -->
@@ -546,7 +546,7 @@
       <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div class="lg:col-span-1">
           <div class="mb-4">
-            <img src="assets/logo.png" alt="企税康" class="h-9 w-auto object-contain brightness-0 invert" />
+            <img src="assets/logo.png" alt="企税康" class="h-10 w-auto max-w-[220px] object-contain object-left" />
           </div>
           <p class="text-sm text-slate-400 leading-relaxed">专业财税合规服务品牌，守护企业财税健康，助力企业行稳致远。</p>
         </div>
